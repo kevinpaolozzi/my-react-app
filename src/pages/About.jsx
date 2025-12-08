@@ -1,19 +1,28 @@
 function About() {
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md p-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          About
-        </h1>
-        <p className="text-gray-600 mb-4">
-          This is a test React application built with:
+    <div className="px-6 py-8 md:px-12 max-w-2xl">
+      <h1 className="text-2xl font-medium dark:text-white text-gray-900 mb-6">
+        About
+      </h1>
+      <div className="space-y-4 dark:text-gray-300 text-gray-600">
+        <p>
+          I'm a designer focused on creating thoughtful brand identities and
+          digital experiences. My work spans branding, UI/UX design, and
+          visual systems.
         </p>
-        <ul className="list-disc list-inside text-gray-600 space-y-2">
-          <li>React 19</li>
-          <li>Vite</li>
-          <li>Tailwind CSS</li>
-          <li>React Router</li>
-        </ul>
+        <p>
+          Each project is an opportunity to solve problems through design,
+          balancing aesthetics with functionality to create work that is
+          both beautiful and effective.
+        </p>
+        <p className="pt-4">
+          <a
+            href="mailto:hello@example.com"
+            className="dark:text-white text-gray-900 underline underline-offset-4"
+          >
+            hello@example.com
+          </a>
+        </p>
       </div>
     </div>
   )

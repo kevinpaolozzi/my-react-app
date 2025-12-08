@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Custom responsive layout for project cards */
+@media (min-width: 1000px) {
+  .project-layout-1 { width: 66.666667%; max-width: 56rem; }
+  .project-layout-2 { width: 50%; max-width: 42rem; }
+  .project-layout-3 { width: 60%; max-width: 48rem; }
+  .project-layout-4 { width: 40%; max-width: 36rem; }
+  .project-layout-5 { width: 50%; max-width: 42rem; }
+  .project-layout-6 { width: 75%; max-width: 64rem; }
+}
+
+@media (max-width: 999px) {
+  .project-layout-1,
+  .project-layout-2,
+  .project-layout-3,
+  .project-layout-4,
+  .project-layout-5,
+  .project-layout-6 {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
