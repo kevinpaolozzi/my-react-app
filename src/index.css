@@ -10,6 +10,12 @@
   .project-layout-4 { width: 40%; max-width: 36rem; }
   .project-layout-5 { width: 50%; max-width: 42rem; }
   .project-layout-6 { width: 75%; max-width: 64rem; }
+
+  /* Paired layout - side by side above 1000px */
+  .custom\:flex-row { flex-direction: row; }
+  .custom\:w-2\/5 { width: 40%; }
+  .custom\:gap-12 { gap: 3rem; }
+  .custom\:max-w-2xl { max-width: 42rem; }
 }
 
 @media (max-width: 999px) {
@@ -22,6 +28,12 @@
     width: 100% !important;
     max-width: none !important;
   }
+
+  /* Paired layout - stacked below 1000px */
+  .custom\:flex-row { flex-direction: column; }
+  .custom\:w-2\/5 { width: 100%; }
+  .custom\:gap-12 { gap: 3rem; }
+  .custom\:max-w-2xl { max-width: none; }
 }
 
 html {

@@ -24,24 +24,51 @@ function Home() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-  // Define layout variations for each project
-  const layouts = [
-    { width: 'project-layout-1', align: 'justify-start' },
-    { width: 'project-layout-2', align: 'justify-end' },
-    { width: 'project-layout-3', align: 'justify-center' },
-    { width: 'project-layout-4', align: 'justify-start' },
-    { width: 'project-layout-5', align: 'justify-center' },
-    { width: 'project-layout-6', align: 'justify-end' },
+  // Define layout patterns - some single, some paired
+  const layoutPatterns = [
+    { type: 'single', width: 'project-layout-1', align: 'justify-start' },
+    { type: 'pair' }, // Two thumbnails side by side
+    { type: 'single', width: 'project-layout-3', align: 'justify-center' },
+    { type: 'single', width: 'project-layout-6', align: 'justify-end' },
   ]
 
-  return (
-    <div className="px-6 py-8 md:px-12 space-y-12 md:space-y-16">
-      {projects.map((project, index) => {
-        const layout = layouts[index % layouts.length]
-        return (
+  const renderProjects = () => {
+    const elements = []
+    let projectIndex = 0
+
+    while (projectIndex < projects.length) {
+      const pattern = layoutPatterns[elements.length % layoutPatterns.length]
+
+      if (pattern.type === 'pair' && projectIndex + 1 < projects.length) {
+        // Render two projects side by side (on desktop) or stacked (on mobile)
+        elements.push(
+          <div key={`pair-${projectIndex}`} className="flex flex-col custom:flex-row gap-6 custom:gap-12 justify-center">
+            <AnimatedSection className="w-full custom:w-2/5 custom:max-w-2xl">
+              <ProjectCard
+                title={projects[projectIndex].title}
+                category={projects[projectIndex].category}
+                image={projects[projectIndex].image}
+                color={projects[projectIndex].color}
+              />
+            </AnimatedSection>
+            <AnimatedSection className="w-full custom:w-2/5 custom:max-w-2xl">
+              <ProjectCard
+                title={projects[projectIndex + 1].title}
+                category={projects[projectIndex + 1].category}
+                image={projects[projectIndex + 1].image}
+                color={projects[projectIndex + 1].color}
+              />
+            </AnimatedSection>
+          </div>
+        )
+        projectIndex += 2
+      } else {
+        // Render single project
+        const project = projects[projectIndex]
+        elements.push(
           <AnimatedSection key={project.id}>
-            <div className={`flex ${layout.align}`}>
-              <div className={layout.width}>
+            <div className={`flex ${pattern.align}`}>
+              <div className={pattern.width}>
                 <ProjectCard
                   title={project.title}
                   category={project.category}
@@ -52,7 +79,16 @@ function Home() {
             </div>
           </AnimatedSection>
         )
-      })}
+        projectIndex += 1
+      }
+    }
+
+    return elements
+  }
+
+  return (
+    <div className="px-6 py-8 md:px-12 space-y-12 md:space-y-16">
+      {renderProjects()}
     </div>
   )
 }
