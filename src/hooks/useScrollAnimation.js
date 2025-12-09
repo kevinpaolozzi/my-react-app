@@ -7,14 +7,11 @@ export function useScrollAnimation(options = {}) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
+        setIsVisible(entry.isIntersecting)
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px',
         ...options,
       }
     )

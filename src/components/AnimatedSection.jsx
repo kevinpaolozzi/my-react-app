@@ -6,10 +6,10 @@ function AnimatedSection({ children, className = '' }) {
   return (
     <div
       ref={ref}
-      className={`transform transition-all duration-700 ease-out ${
+      className={`transform transition-all duration-1000 ease-out ${
         isVisible
           ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-8'
+          : 'opacity-0 translate-y-12'
       } ${className}`}
     >
       {children}
